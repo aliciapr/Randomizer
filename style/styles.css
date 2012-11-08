@@ -1,0 +1,16 @@
+/*textarea[name=textArea] {*/
+textarea{
+    resize: none;
+}
+
+
+/*button{
+    background-color:#FFFFFF !important;
+    border: 1px solid #132b14 !important;
+    color:#132b14 !important;
+}*/
+
+/*.generator {
+    background-image: url('icons/butt.png') !important;
+}*/
+/*Does not work...*/
