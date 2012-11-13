@@ -1,16 +1,47 @@
 /*textarea[name=textArea] {*/
-textarea{
-    resize: none;
+textarea {
+	resize: none;
+}
+
+/*button{
+ background-color:#FFFFFF !important;
+ border: 1px solid #132b14 !important;
+ color:#132b14 !important;
+ }*/
+
+/*.generator {
+ background-image: url('icons/butt.png') !important;
+ }*/
+/*Does not work...*/
+
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font: 14px Georgia, serif;
+	text-align: center;
+}
+
+h1 {
+	font: bold 20px Helvetica, Sans-Serif;
+	letter-spacing: -1px;
 }
 
 
-/*button{
-    background-color:#FFFFFF !important;
-    border: 1px solid #132b14 !important;
-    color:#132b14 !important;
-}*/
+body{
+	width: 500px;
+	margin: 25px auto;
+}
 
-/*.generator {
-    background-image: url('icons/butt.png') !important;
-}*/
-/*Does not work...*/
+input[type=text] {
+	padding: 10px;
+	color: #999;
+	font: bold 20px Helvetica, Sans-Serif;
+	width: 60px;
+	margin: 10px 0;
+}
+
+textarea {
+	font-size: 25px;
+}

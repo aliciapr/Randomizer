@@ -9,9 +9,9 @@ function createButton(id, label, func) {
 	button.name = id;
 	button.value = label;
 	button.onclick = func;
-	$(document.body).append(button);
+	$("#container").append(button);
+	//instead of $(document.body).append(button);
 	//document.body.appendChild(button);
-
 }
 
 function createInput(id) {
@@ -25,15 +25,15 @@ function createInput(id) {
 	// set size:
 	inputText.size = "6"
 
-	$(document.body).append(inputText);
-	//document.body.appendChild(inputText);
+	$("#container").append(inputText);
 }
 
 function createDisplay(id) {
 
 	var displayText = document.createElement("textarea");
 
-	displayText.name = id;
+	displayText.id = id;
+	//.name
 	displayText.disabled = "disabled";
 	// por que displayText.readonly = "readonly" permite editar?
 
@@ -42,8 +42,7 @@ function createDisplay(id) {
 	displayText.rows = "1";
 	displayText.style = "resize: none";
 	//no funciona, tuve que usar el archivo CSS
-	$(document.body).append(displayText);
-	//document.body.appendChild(displayText);
+	$("#container").append(displayText);
 }
 
 function validateInputs(min, max) {
@@ -52,6 +51,11 @@ function validateInputs(min, max) {
 		//this method already checks if min and max are ""
 		if (max < min) {
 			alert(min + " cannot be bigger than " + max);
+			/** $(".field").change(function(){
+			 $(this).css("background-color","#D6D6FF");
+			 }); */
+			$("#minValue").css("color", "#C11B17");
+			$("#minValue").css("background-color", "#800000");
 			return false;
 		}
 		if (Math.floor(min) == min && Math.floor(max) == max)
@@ -69,11 +73,18 @@ function onClickGenerate() {//lanzar el verificador de valores
 	 *  var max = retrieveValue("maxValue");
 	 * Pero se puede usar el $ directamente
 	 */
-	var min = $("#minValue").val();
-	var max = $("#maxValue").val();
+	var min = Number($("#minValue").val());
+	//This is JavaScript
+	var max = Number($("#maxValue").val());
+
+	var result;
 
 	if (validateInputs(min, max)) {
-		generateNumber(min, max);
+		//restore previous value:
+			$("#minValue").css("color", "");
+			$("#minValue").css("background-color", "");
+		result = generateNumber(min, max);
+		writeResult(result);
 	}
 }
 
@@ -84,13 +95,36 @@ function generateNumber(min, max) {
 
 	//aquí estaba el falli!! pero las variables no eran de cualquier tipo en javascrí?
 	number += parseInt(min);
-	alert(number);
-	// $(textarea[ name = "displayer"]) = number;
-	//en lugar de usar mi funcion setValue
+	return number;
 }
 
-function createSpaces() {
+function writeResult(num) {
+	//en lugar de usar mi funcion setValue	$("#displayer").val(num);
+	//no need for .val(String(num))
 
+}
+
+function createNewLine(n) {
+	var i = 0;
+	for (; i < n; i++)
+		$("#container").append('<br/>');
+	//por que funciona esto, y document.body.append('<br/>') no?
+	//Creo que no entiendo la diferencia entre usar $ y no usarlo
+}
+
+function writeSpaces(n) {
+	var i = 0;
+	for (; i < n; i++) {
+		$("#container").append('&nbsp;');
+	}
+}
+
+function createDiv() {
+	$(document.body).append('<div id="container"></div>');
+}
+
+function renderImage() {
+	$(document.body).append('<img src="icons/randomnumb.png" alt="get a random number between..." />');
 }
 
 /**
